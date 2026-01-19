@@ -35,7 +35,8 @@ def logout():
 
 @login_manager.user_loader
 def load_user(user_id):
-    return create_session().query(User).get(user_id)
+    session = create_session()
+    return session.get(User, user_id)
 
 
 @app.route("/login", methods=["GET", "POST"])

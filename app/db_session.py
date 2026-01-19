@@ -23,7 +23,7 @@ def db_session_init(db_file: str):
     logging.info(f"Подключение к базе данных по адресу {conn_str}")
 
     engine = sa.create_engine(conn_str)
-    __factory = orm.sessionmaker(bind=engine)
+    __factory = orm.sessionmaker(bind=engine, expire_on_commit=False)
 
     from models import __all_models
 
