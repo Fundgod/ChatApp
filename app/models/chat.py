@@ -18,8 +18,8 @@ class Chat(SqlAlchemyBase):
 	members = sqlalchemy.Column(sqlalchemy.String)
 	creator_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
 	last_message_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("messages.id"))
-	creator = orm.relation("User")
-	last_message = orm.relation("Message", foreign_keys=[last_message_id])
+	creator = orm.relationship("User")
+	last_message = orm.relationship("Message", foreign_keys=[last_message_id])
 
 	def get_members(self, session: Optional[Session] = None) -> List[User]:
 		if session is None:
